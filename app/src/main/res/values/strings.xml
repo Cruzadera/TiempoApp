@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Tiempo</string>
+    <string name="hint_ciudad">Ciudad</string>
+    <string name="msg_temperatura">Temperatura: <br /> min %1$f max %2$f media %3$f</string>
+    <string name="no_lluvia">Lluvia: -</string>
+    <string name="icon_weather_description">icon weather</string>
+    <string name="no_string">El campo está vacío</string>
+    <string name="url_img">http://openweathermap.org/img/w/%1$s.png</string>
+    <string name="app_main_channel_name">CHANNEL_ID</string>
+    <string name="high_priority_channel_name">High priority notification channel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
