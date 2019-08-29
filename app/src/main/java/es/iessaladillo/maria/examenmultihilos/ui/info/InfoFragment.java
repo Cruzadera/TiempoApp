@@ -3,34 +3,30 @@ package es.iessaladillo.maria.examenmultihilos.ui.info;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 import es.iessaladillo.maria.examenmultihilos.R;
-import es.iessaladillo.maria.examenmultihilos.data.ApiService;
-import es.iessaladillo.maria.examenmultihilos.data.dto.Resultado;
+import es.iessaladillo.maria.examenmultihilos.data.remote.ApiService;
+import es.iessaladillo.maria.examenmultihilos.data.remote.dto.Resultado;
 import es.iessaladillo.maria.examenmultihilos.databinding.FragmentInfoBinding;
+import es.iessaladillo.maria.examenmultihilos.ui.MainActivityViewModel;
 import es.iessaladillo.maria.examenmultihilos.utils.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +40,7 @@ public class InfoFragment extends Fragment {
     FragmentInfoBinding b;
     private String CHANNEL_ID = Constants.DEFAULT_CHANNEL_ID;
     private int NOTIFICATION_ID = 1;
-    private NotificationManager notificationManager;
+    private MainActivityViewModel viewModel;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -69,23 +65,19 @@ public class InfoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        viewModel = ViewModelProviders.of(getActivity()).get(MainActivityViewModel.class);
         setupViews();
     }
 
     private void setupViews() {
-        FloatingActionButton fab = ActivityCompat.requireViewById(requireActivity(), R.id.fabSearch);
-        fab.setOnClickListener(l -> checkField(b.txtCiudad.getText().toString()));
-        //Hay que poner un inputType para que funcione
-        b.txtCiudad.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                checkField(Objects.requireNonNull(b.txtCiudad.getText()).toString());
-                search(b.txtCiudad.getText().toString());
-                return true;
+        viewModel.getLocalidad().observe(this, localidad ->{
+            if(localidad != null || localidad.equals("")){
+                search(localidad);
+            }else{
+                Log.e("LOCALIDAD", "NULL");
             }
-            return false;
+
         });
-
-
     }
 
     private void search(String text) {
@@ -143,13 +135,5 @@ public class InfoFragment extends Fragment {
         b.lblAmanecer.setText(String.format("Amanecer: %02d:%02d Atardecer: %02d:%02d", amanecer.get(Calendar.MINUTE), amanecer.get(Calendar.SECOND), atardecer.get(Calendar.MINUTE), atardecer.get(Calendar.SECOND)));
     }
 
-    private void checkField(String txt) {
-        if(!TextUtils.isEmpty(txt)){
-            search(txt);
-        }else{
-            b.txtCiudad.setError(getString(R.string.no_string));
-        }
-
-    }
 
 }

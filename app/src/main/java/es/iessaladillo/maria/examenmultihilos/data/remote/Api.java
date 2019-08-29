@@ -1,6 +1,6 @@
-package es.iessaladillo.maria.examenmultihilos.data;
+package es.iessaladillo.maria.examenmultihilos.data.remote;
 
-import es.iessaladillo.maria.examenmultihilos.data.dto.Resultado;
+import es.iessaladillo.maria.examenmultihilos.data.remote.dto.Resultado;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

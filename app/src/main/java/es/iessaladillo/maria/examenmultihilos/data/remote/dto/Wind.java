@@ -1,6 +1,4 @@
-package es.iessaladillo.maria.examenmultihilos.data.dto;
-
-import android.annotation.SuppressLint;
+package es.iessaladillo.maria.examenmultihilos.data.remote.dto;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,4 +1,4 @@
-package es.iessaladillo.maria.examenmultihilos.data.dto;
+package es.iessaladillo.maria.examenmultihilos.data.remote.dto;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
