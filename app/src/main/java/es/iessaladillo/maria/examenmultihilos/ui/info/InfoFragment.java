@@ -70,14 +70,12 @@ public class InfoFragment extends Fragment {
     }
 
     private void setupViews() {
-        viewModel.getLocalidad().observe(this, localidad ->{
-            if(localidad != null || localidad.equals("")){
-                search(localidad);
-            }else{
-                Log.e("LOCALIDAD", "NULL");
-            }
+        viewModel.getLocalidad().observe(this, this::search);
+        b.btnGuardar.setOnClickListener(l->guardarLocalidad());
+    }
 
-        });
+    private void guardarLocalidad() {
+
     }
 
     private void search(String text) {

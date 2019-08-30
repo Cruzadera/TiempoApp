@@ -69,7 +69,6 @@ public class MainFragment extends Fragment {
         //Comprobamos que el campo no está vacío
         if(checkField(Objects.requireNonNull(b.txtBuscarLocalidad.getText()).toString())){
             //Navegamos hacia el fragmento de info de la localidad
-            viewModel.setLocalidad(b.txtBuscarLocalidad.getText().toString());
             FragmentUtils.replaceFragmentAddToBackstack(requireActivity().getSupportFragmentManager(),
                     R.id.flContent, InfoFragment.newInstance(),
                     InfoFragment.class.getSimpleName(), InfoFragment.class.getSimpleName(),

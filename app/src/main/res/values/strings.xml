@@ -11,4 +11,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_no_localidades">No hay todavía ninguna localidad guardada</string>
+    <string name="list_deleted_successfully">Se ha guardado correctamente</string>
+    <string name="list_error_deleting">No se ha guardado correctamente</string>
+    <string name="msg_btn_guardar">Guardar localidad</string>
+    <string name="description_img_weather">Icono del tiempo</string>
 </resources>
